@@ -13,7 +13,7 @@
     <div class="container nt-5">
         <div class="d-flex justify-content-between align-items-center">
             <h1>Agenda de Contactos</h1>
-            <button type="button" class="btn btn-primary">+ Nuevo contacto</button>
+            <a href="{{ url_for('crear') }}" class="btn btn-primary">+ Nuevo contacto</a>
         </div>
 
 
@@ -34,8 +34,8 @@
                     <td>918893934</td>
                     <td>brandon.urtecho@gmail.com</td>
                     <td class="text-center">
-                        <button type="button" class="btn btn-warning">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
+                        <a href="{{ url_for('editar') }}" class="btn btn-warning">Editar</a>
+                        <a href="{{ url_for('eliminar') }}" class="btn btn-danger">Eliminar</a>
                     </td>
                 </tr>
             </tbody>
