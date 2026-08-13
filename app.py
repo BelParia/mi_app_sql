@@ -3,7 +3,7 @@ from routes import register_app
 
 app = Flask(__name__)
 
-register_app(app=app)  # la segunda app es en sì la app de arriba DX
+register_app(app=app)
 
 ## ejecutar el programa
 ## solo en este archivo
