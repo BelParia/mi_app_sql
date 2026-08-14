@@ -1,9 +1,11 @@
 from flask import render_template, request, redirect, url_for
+from models import Contacto
 
 def register_app(app):    
     @app.route("/")
     def inicio():
-        return render_template("index.html")
+        contactos = Contacto.query.all()
+        return render_template("index.html", contactos=contactos)
 
     @app.route("/crear")
     def crear():
