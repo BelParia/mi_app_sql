@@ -16,9 +16,9 @@
         <div class="card">
             <div class="card-body">
                 <div class="alert alert-warning">
-                    ¿Estás seguro de que deseas eliminar al contacto <strong>Brandon Urtecho</strong>? Esta acción no se puede deshacer.
+                    ¿Estás seguro de que deseas eliminar al contacto <strong>{{ contacto.nombre }}</strong>? Esta acción no se puede deshacer.
                 </div>
-                <form action="{{ url_for('eliminar') }}" method="post">
+                <form action="{{ url_for('eliminar', id=contacto.id) }}" method="post">
                     <button type="submit" class="btn btn-danger">Sí, eliminar</button>
                     <a href="{{ url_for('inicio') }}" class="btn btn-secondary">Cancelar</a>
                 </form>

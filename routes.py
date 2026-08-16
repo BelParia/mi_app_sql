@@ -25,13 +25,22 @@ def register_app(app):
         db.session.commit()
         return redirect(url_for('inicio'))  ## redirigiendo al inicio, listado de contactos  
 
-    @app.route("/editar")
-    def editar():
-        return render_template("editar.html")
-
-    @app.route("/eliminar", methods=["GET", "POST"])
-    def eliminar():
+    @app.route("/editar/<int:id>", methods=["GET", "POST"])
+    def editar(id):
+        contacto = Contacto.query.get_or_404(id)
         if request.method == "POST":
-            # TODO: eliminar el contacto de la base de datos
+            contacto.nombre = request.form['nombre']
+            contacto.telefono = request.form['telefono']
+            contacto.email = request.form['email']
+            db.session.commit()
+            return redirect(url_for('inicio'))
+        return render_template("editar.html", contacto=contacto)
+
+    @app.route("/eliminar/<int:id>", methods=["GET", "POST"])
+    def eliminar(id):
+        contacto = Contacto.query.get_or_404(id)
+        if request.method == "POST":
+            db.session.delete(contacto)
+            db.session.commit()
             return redirect(url_for("inicio"))
-        return render_template("eliminar.html")    
+        return render_template("eliminar.html", contacto=contacto)

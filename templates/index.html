@@ -35,8 +35,8 @@
                     <td>{{ contacto.telefono }}</td>
                     <td>{{ contacto.email }}</td>
                     <td class="text-center">
-                        <a href="{{ url_for('editar') }}" class="btn btn-warning">Editar</a>
-                        <a href="{{ url_for('eliminar') }}" class="btn btn-danger">Eliminar</a>
+                        <a href="{{ url_for('editar', id=contacto.id) }}" class="btn btn-warning">Editar</a>
+                        <a href="{{ url_for('eliminar', id=contacto.id) }}" class="btn btn-danger">Eliminar</a>
                     </td>
                 </tr>
                 {% endfor %}
