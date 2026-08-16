@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect, url_for
 from models import Contacto
+from extensions import db
 
 def register_app(app):    
     @app.route("/")
@@ -7,9 +8,22 @@ def register_app(app):
         contactos = Contacto.query.all()
         return render_template("index.html", contactos=contactos)
 
-    @app.route("/crear")
+    @app.route("/crear", methods = ['GET'])  ## metodo de tipo GET (conseguir datos)
+    def ver_creacion_contacto():
+        return render_template('crear.html')
+
+    @app.route("/crear", methods = ['POST'])  ## metodo de tipo POST (enviar datos)
     def crear():
-        return render_template("crear.html")
+        ## formar el contacto, el nuevo objeto
+        nuevo_contacto= Contacto(
+            nombre = request.form['nombre'],
+            telefono = request.form['telefono'],
+            email = request.form['email']
+        )
+        ## guardar el nuevo_contacto en la base de datos
+        db.session.add(nuevo_contacto)
+        db.session.commit()
+        return redirect(url_for('inicio'))  ## redirigiendo al inicio, listado de contactos  
 
     @app.route("/editar")
     def editar():
